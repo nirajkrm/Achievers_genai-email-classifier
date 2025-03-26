@@ -176,6 +176,7 @@ This project is a **Generative AI-powered Email Classification and OCR solution*
     "deal_isin": "US13861EAE05",
     "facility_isin": "US13861EAF79"
   },
+  "assigned_team": "Disbursement Team",
   "duplication": {
     "is_duplicate": false,
     "duplicate_type": null,
@@ -240,4 +241,3 @@ Free to use for research, demo, or hackathon purposes. Attribution appreciated.
 =======
 # Achievers_genai-email-classifier
 GenAI-powered pipeline for classifying financial servicing emails, extracting fields, and detecting duplicates using GPT, OCR, and IMAP.
->>>>>>> 7b4d0c4ed166031b2c00a2306932d49dbe922c6b

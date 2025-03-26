@@ -1,76 +1,65 @@
-# config.py
-
 import os
 from dotenv import load_dotenv
 
-# === Load environment variables from .env file ===
 load_dotenv()
 
-# === OpenAI Settings ===
+# === API Keys & Model ===
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-OPENAI_MODEL = "gpt-3.5-turbo"  # Ensure this matches your OpenAI model
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-3.5-turbo")
 
-# === File Paths ===
-INPUT_DIR = "data/inputs"  # Directory for input files
-OUTPUT_DIR = "data/outputs"  # Directory for output files
-DEDUP_DB = os.path.join(OUTPUT_DIR, "dedup_cache.db")  # Deduplication database path
+# === Input/Output Paths ===
+INPUT_DIR = "data/inputs"
+OUTPUT_DIR = "data/outputs"
+ATTACHMENTS_DIR = os.path.join(INPUT_DIR, "attachments")
+LOG_DIR = "Logs"
+ENABLE_WEBHOOK = os.getenv("ENABLE_WEBHOOK", "false").lower() == "true"
+WEBHOOK_URL = os.getenv("WEBHOOK_URL", "")
 
-# === Embedding Model ===
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"  # Model for generating embeddings
+# === Deduplication Settings ===
+DEDUP_DB = os.path.join(OUTPUT_DIR, "dedup_cache.db")
+DEDUPLICATION_FIELDS = ["request_type", "date"]
+DEDUPLICATION_THRESHOLD = 0.9
 
-# === Deduplication Thresholds ===
-SIMILARITY_THRESHOLD = 0.9  # Threshold for identifying duplicate emails
-DATE_WINDOW_DAYS = 2  # Time window for considering duplicates
+# === Currency Symbols and Tags ===
+CURRENCY_SYMBOLS = {"$", "€", "£", "¥"}
+CURRENCY_CODES = {"USD", "EUR", "GBP", "JPY"}
+ALLOWED_TAGS = {"fee", "principal", "repayment", "drawdown", "interest", "amount"}
 
-# === Webhook URL for ticketing tool integration ===
-WEBHOOK_URL = os.getenv("WEBHOOK_URL")
-
-# === Currency Configurations ===
-CURRENCY_SYMBOLS = {
-    "$": "USD", "€": "EUR", "£": "GBP", "¥": "JPY", "₹": "INR"
-}
-CURRENCY_CODES = ["USD", "EUR", "GBP", "JPY", "CAD", "AUD", "INR"]
-
-# === Allowed Tags for Field Classification ===
-ALLOWED_TAGS = [
-    "repayment_amount",
-    "your_share",
-    "previous_global_balance",
-    "new_global_balance",
-    "fee_amount",
-    "commitment_amount",
-    "allocation_amount",
-    "unknown"
-]
-
-# === Subject-Based Classification Rules ===
+# === Subject Rule-based Classifier ===
 SUBJECT_RULES = {
-    "Commitment Change": {
-        "keywords": ["commitment", "upsize", "increase"],
-        "request_type": "Commitment Change",
-        "sub_request_type": "Commitment Increase"
-    },
-    "Final Allocation": {
-        "keywords": ["final allocation", "closing deal"],
-        "request_type": "Drawdown",
-        "sub_request_type": "Final Allocation"
-    },
-    "Fee Notification": {
-        "keywords": ["fee", "amendment"],
-        "request_type": "Fee Notification",
-        "sub_request_type": "Amendment Fee"
-    },
-    "Principal and Interest": {
-        "keywords": ["principal", "interest", "payment"],
-        "request_type": "Money Movement - Inbound",
-        "sub_request_type": "Principal + Interest"
-    },
-    # Add more subject-based rules as needed...
+    "commitment": {"request_type": "Commitment Change", "priority": "Medium"},
+    "drawdown": {"request_type": "Drawdown", "priority": "High"},
+    "fee": {"request_type": "Fee Notification", "priority": "Medium"},
+    "allocation": {"request_type": "Allocation Confirmation", "priority": "Medium"},
+    "repayment": {"request_type": "Money Movement - Outbound", "priority": "High"},
+    "receipt": {"request_type": "Money Movement - Inbound", "priority": "High"},
+}
 
-    # === Fallback Rule ===
-    "Others": {
-        "keywords": [],
-        "request_type": "Others",
-        "sub_request_type": "Others"
-    }
+# === Comprehensive Team Assignment Map ===
+TEAM_MAP = {
+    # Core request types
+    "Loan Repayment": "Disbursement Team",
+    "Loan Modification": "Loan Servicing Team",
+    "Funding": "Cash Ops Team",
+    "Funds Transfer": "Cash Ops Team",
+    "Allocation Notification": "Allocations Team",
+    "Fee Payment": "Finance Team",
+    
+    # Subject-based types
+    "Commitment Change": "Loan Servicing Team",
+    "Drawdown": "Allocations Team",
+    "Fee Notification": "Finance Team",
+    "Money Movement - Inbound": "Cash Ops Team",
+    "Money Movement - Outbound": "Disbursement Team",
+    "Allocation Confirmation": "Allocations Team",
+    
+    # Variants and aliases
+    "Funds Allocation": "Allocations Team",
+    "Final Allocation": "Allocations Team",
+    "Principal Payment": "Disbursement Team",
+    "Repayment Confirmation": "Disbursement Team",
+    "Capital Contribution": "Cash Ops Team",
+    
+    # Fallback
+    "Others": "General Servicing Team"
 }
