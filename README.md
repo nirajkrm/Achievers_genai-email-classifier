@@ -237,3 +237,7 @@ While the core system is functional and ready for real use cases, the following 
 
 Free to use for research, demo, or hackathon purposes. Attribution appreciated.
 
+=======
+# Achievers_genai-email-classifier
+GenAI-powered pipeline for classifying financial servicing emails, extracting fields, and detecting duplicates using GPT, OCR, and IMAP.
+>>>>>>> 7b4d0c4ed166031b2c00a2306932d49dbe922c6b
