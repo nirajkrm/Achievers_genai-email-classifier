@@ -1,0 +1,45 @@
+BANK OF AMERICA
+Bank of America, N.A.
+
+To :	WELLS FARGO BANK NATIONAL ASSOCIATION
+
+Date :	8-Nov-2023
+
+ATTN :	AGENT DEFAULT
+Phone :	999-999-9999
+Fax:	877-606-9426
+Email :	DENI
+
+
+Re : 	CANTOR FITZGERALD LP USD 425MM MAR22 / REVOLVER / CANTOR FITO0037
+
+Deal CUSIP :	13861EAE0
+Deal ISIN :	US13861EAE05
+Facility CUSIP: 13861EAF7
+Facility ISIN:	US13861EAF79
+Lender MEI: 	US1
+
+Effective 10-Nov-2023, R FITZGERALD LP has elected to repay under the SOFR (US) Term option, a total of USD 20,000,000.00.
+
+Previous Global principal balance: 	USD 45,000,000.00
+New Global principal balance : 	USD 25,000,000.00
+
+This loan was effective 20-Jul-2023 and is scheduled to reprice on 20-Nov-2023 .
+
+Your share of the USD 20,000,000.00 SOFR (US) Term option payment is USD 1,411,764.71.
+Previous Lender Share Principal Balance: 	USD 3,176,470.59
+New Lender Share Principal Balance: 	USD 1,764,705.88
+
+We will remit USD 1,411,764.71 on the effective date. Please note that (i) If the Borrower has not in fact made such payment; or (il) any payment you receive is in excess of what was pald by the Borrower or (Ill) we notify you that the payment was erroneously made, then pursuant to the provisions of the credit facility, you agree to return such payment.
+
+For: 	WELLS FARGO BANK NATIONAL ASSOCIATION
+To : 	WELLS FARGO BANK, NA 
+ABA Number: 1248
+Account No: XXXXXXXXXX0720
+
+Reference: CANTOR FITZGERALD LP USD 425MM MAR22, SOFR (US) Term Principal Payment (CANTOR FIT00037)
+
+Thanks & Regards,
+JONNY HERNANDEZ
+Telephone #: +1980
+Email id : jon

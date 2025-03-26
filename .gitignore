@@ -1,0 +1,21 @@
+# Secrets and environment config
+.env
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs and outputs
+*.log
+*.db
+logs/
+data/outputs/
+
+# Office files (optional)
+*.docx
+
+# VSCode or IDE-specific
+.vscode/
+.idea/
